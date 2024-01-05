@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "pizza-delivery-api"
+version = "0.1.0"
+description = "Projeto em fastapi para delivery de pizza"
+authors = ["Soilenyis <soilenyis@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.108.0"
+uvicorn = "^0.25.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
