@@ -7,3 +7,5 @@ class Settings(BaseSettings):
     )
 
     DATABASE_URL: str
+
+    AUTHJWT_SECRET_KEY: str

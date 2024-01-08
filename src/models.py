@@ -15,7 +15,7 @@ class User(BaseModel):
     email: Mapped[str] = mapped_column(String(80), unique=True)
     password: Mapped[str] = mapped_column(nullable=True)
     is_staff: Mapped[bool] = mapped_column(default=False)
-    is_activate: Mapped[bool] = mapped_column(default=False)
+    is_active: Mapped[bool] = mapped_column(default=False)
     orders = relationship('Order', back_populates='user')
 
     # def __repr__(self):
