@@ -32,7 +32,6 @@ async def read_users(token: Annotated[str, Depends(oauth2_scheme)]):
 async def signup(user: UserSign, response: Response, session: Session = Depends(get_session)):
     service = Service()
     db_user = service.service_signup(response, user, session)
-
     return db_user
 
 

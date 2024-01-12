@@ -17,15 +17,10 @@ class Service:
     @staticmethod
     def service_signup(response, user, session: Session = Depends(get_session)):
         try:
-            db_email = session.query(User).filter(User.email == user.email).first()
-            if db_email is not None:
+            user_model = session.query(User).filter(User.username == user.username).first()
+            if user_model:
                 response.status_code = 400
-                return DefaultOut(status='error', message='User with the email already exists')
-
-            db_username = session.query(User).filter(User.username == user.username).first()
-            if db_username is not None:
-                response.status_code = 400
-                return DefaultOut(status='error', message='User with the username already exists')
+                return DefaultOut(status='error', message='Username already exists')
 
             hashed_password = get_password_hash(user.password)
 
