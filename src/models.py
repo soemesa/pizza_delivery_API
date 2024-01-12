@@ -1,6 +1,5 @@
-from sqlalchemy import text, ForeignKey, String
+from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy_utils.types import ChoiceType
 
 
 class BaseModel(DeclarativeBase):
@@ -40,11 +39,8 @@ class Order(BaseModel):
     id: Mapped[int] = mapped_column(primary_key=True)
     quantity: Mapped[int] = mapped_column(nullable=False)
     order_status: Mapped[str] = mapped_column(String, default="PENDING")
-    # order_status: Mapped[ChoiceType] = mapped_column(choices=ORDER_STATUSES, default="PENDING")
     pizza_size: Mapped[str] = mapped_column(String, default='SMALL')
-    # pizza_size: Mapped[ChoiceType] = mapped_column(choices=PIZZA_SIZES, default='SMALL')
     user_id: Mapped[int] = mapped_column(ForeignKey('user.id'))
-    # user_id: Mapped[ChoiceType] = mapped_column(ForeignKey('user.id'))
     user = relationship('User', back_populates='orders')
 
     # def __repr__(self):

@@ -1,8 +1,24 @@
 # from email_validator import validate_email
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel
+
+from src.models import User
 
 
-class SignUpModel(BaseModel):
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    username: str | None = None
+
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+
+class UserSign(BaseModel):
     id: int | None = None
     username: str
     email: str
@@ -17,7 +33,6 @@ class SignUpModel(BaseModel):
     #     except Exception:
     #         raise ValueError("O email é inválido")
     #     return value
-    #
 
     class Config:
         from_attributes = True
@@ -37,35 +52,29 @@ class DefaultOut(BaseModel):
     message: str
 
 
-class LoginModel(BaseModel):
-    username: str
-    password: str
+# class OrderModel(BaseModel):
+#     id: int | None = None
+#     quantity: int
+#     order_status: str = "PENDING"
+#     pizza_size: str = "SMALL"
+#     user_id: int | None = None
+#
+#     class Config:
+#         from_attributes = True
+#         json_schema_extra = {
+#             "example": {
+#                 "quantity": 2,
+#                 "pizza_size": "LARGE"
+#             }
+#         }
 
-
-class OrderModel(BaseModel):
-    id: int | None = None
-    quantity: int
-    order_status: str = "PENDING"
-    pizza_size: str = "SMALL"
-    user_id: int | None = None
-
-    class Config:
-        from_attributes = True
-        json_schema_extra = {
-            "example": {
-                "quantity": 2,
-                "pizza_size": "LARGE"
-            }
-        }
-
-
-class OrderStatusModel(BaseModel):
-    order_status: str = "PENDING"
-
-    class Config:
-        from_attributes = True
-        json_schema_extra = {
-            "example": {
-                "order_status": "PENDING"
-            }
-        }
+# class OrderStatusModel(BaseModel):
+#     order_status: str = "PENDING"
+#
+#     class Config:
+#         from_attributes = True
+#         json_schema_extra = {
+#             "example": {
+#                 "order_status": "PENDING"
+#             }
+#         }
