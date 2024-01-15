@@ -43,5 +43,3 @@ class Order(BaseModel):
     user_id: Mapped[int] = mapped_column(ForeignKey('user.id'))
     user = relationship('User', back_populates='orders')
 
-    # def __repr__(self):
-    #     return f"<Order {self.id}>"

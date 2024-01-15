@@ -13,6 +13,12 @@ class TokenData(BaseModel):
     username: str | None = None
 
 
+class UserModel(BaseModel):
+    username: str
+    email: str | None = None
+    disabled: bool | None = None
+
+
 class UserLogin(BaseModel):
     username: str
     password: str
@@ -25,14 +31,6 @@ class UserSign(BaseModel):
     password: str
     is_staff: bool | None = None
     is_active: bool | None = None
-
-    # @field_validator('email')
-    # def validate_email(self, value: str):
-    #     try:
-    #         validate_email(value, check_deliverability=False)
-    #     except Exception:
-    #         raise ValueError("O email é inválido")
-    #     return value
 
     class Config:
         from_attributes = True
